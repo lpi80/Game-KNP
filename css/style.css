@@ -1,0 +1,48 @@
+body {
+  padding: 10px;
+  text-align: center;
+}
+
+.box {
+  display: inline-block;
+  margin: 50px 10px;
+  width: 200px;
+  border: 1px solid black;
+  min-height: 100px;
+  text-align: center;
+  vertical-align: top;
+}
+
+.box__button {
+  display: block;
+  width: 100%;
+  height: 50px;
+  background: lightgray;
+}
+
+.box__button:hover {
+  font-weight: bold;
+  background: lightgreen;
+}
+
+.box__header {
+  border-bottom: 1px solid black;
+  height: 50px;
+  line-height: 50px;
+  background: lightgray;
+}
+
+.info {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 30px 0px;
+}
+
+.info--playing {
+  color: green;
+}
+
+.info--finish {
+  color: red;
+}
+/*# sourceMappingURL=style.css.map */

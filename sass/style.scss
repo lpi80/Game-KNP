@@ -1,0 +1,57 @@
+$headerHeight: 50px;
+$boxWidth: 200px;
+$colorButtonHover: lightgreen;
+$colorFinish: red;
+$colorPLaying: green;
+$fontStyleHover: bold;
+$fontInfoSize: 36px;
+$fintInfoStyle: bold;
+$boxMinHeight: 100px;
+$colorBoxBorder: black;
+$colorBoxHeader: lightgray;
+
+body {
+	padding: 10px;
+	text-align: center;
+}
+
+.box {
+  display: inline-block;
+	margin: 50px 10px;
+	width: $boxWidth;
+	border: 1px solid $colorBoxBorder;
+	min-height: $boxMinHeight;
+	text-align: center;
+	vertical-align: top;
+	
+  &__button {
+		display: block;
+		width: 100%;
+    height: $headerHeight;
+    background: $colorBoxHeader;
+	  
+    &:hover {
+      font-weight: $fontStyleHover;
+      background: $colorButtonHover;
+    }
+  }
+  
+  &__header {
+    border-bottom: 1px solid $colorBoxBorder;
+    height: $headerHeight;
+    line-height: $headerHeight;
+    background: $colorBoxHeader;
+  }
+}
+
+.info {
+  font-size: $fontInfoSize;
+  font-weight: $fintInfoStyle;
+  margin: 30px 0px;
+  &--playing {
+    color: $colorPLaying;
+  }
+  &--finish {
+    color: $colorFinish;
+  }
+}
