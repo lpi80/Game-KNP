@@ -1,0 +1,43 @@
+.btn {
+    height: 40px;
+    min-width: 93px;
+    border-radius: 3px;
+    border: none;
+    color: $btnColor;
+    padding: 5px 10px;
+    margin: 5px 5px;
+    font-family: $btnFontFamily;
+    font-size: $btnFontSize;
+    font-weight: $btnFontWeight;
+    display: block;
+
+    &--icon {
+        padding-right: 10px;
+    }
+
+    &:hover {
+        cursor: pointer; 
+    }
+
+    &--orange {
+        background: $btnOrange;
+        &:hover {
+            background: $btnOrangeHover;
+        }   
+    }
+
+    &--grey {
+        background: $btnGrey;
+        &:hover {
+            background: $btnGreyHover;
+        }   
+    }
+
+    &--disabled {
+        background: $btnDisable;
+        &:hover {
+            cursor: pointer;
+            background: $btnDisable;
+        }
+    }
+}

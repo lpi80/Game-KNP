@@ -1,3 +1,16 @@
+//@import "reset";
+* {box-sizing: border-box;}
+//*, *:before, *:after {margin: 0; padding: 0; }
+//ul {list-style: none;   }  
+
+@import "variables";
+@import "layout";
+@import "components/modal";
+@import "components/buttons";
+@import "components/table";
+@import "mixins"; 
+
+
 $headerHeight: 50px;
 $boxWidth: 200px;
 $colorButtonHover: lightgreen;

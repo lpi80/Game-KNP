@@ -1,0 +1,59 @@
+.overlay {
+    position: fixed;
+    @include myFlexRow(center, center, center, row, 100%);
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    overflow: auto;
+    overflow-x: auto;
+    padding: 30px;
+    display: none;
+
+    &.show {
+        display: flex;
+    } 
+    
+    &::webkit-scrollbar {
+        display: none;
+    }
+}
+
+
+.modal {
+    max-width: 500px;
+    min-width: 500px;
+    max-height: 700px;
+    margin: auto;
+    background-color: #ffffff;
+    position: relative;
+    padding: 30px;
+    display: none;
+    overflow-y: auto;
+    overflow-x: none;
+
+    &.show {
+        display: flex;
+        @include myFlexRow(flex-start, flex-start, flex-start, row, 100px);
+    
+    }
+}
+
+.game {
+    @include myFlexRow(center, center, center, row, 100px);
+    width: 100%;
+    &__header {
+        &--desc {
+            font-size: 40px;
+            font-weight: bold;
+
+            
+        }
+        &--result {
+            font-size: 40px;
+        }
+    }
+}
+
+

@@ -12,12 +12,13 @@ var game = {
   gameLimit: 0,
   computerResult: 0,
   humanResult: 0,
-  numberOfChoice: 2
+  numberOfChoice: 2,
+  table: []
 }
 
 var documentObjects = {
   info: document.querySelector('#result'),
-  infoFinish: document.querySelector('#result-all'),
+  infoFinish: document.querySelector('#gameResult'),
   computer: document.querySelector('#box-computer'),
   human: document.querySelector('#box-human'),
   newGame: document.querySelector('#new-game'),
@@ -27,8 +28,41 @@ var documentObjects = {
   move: document.querySelectorAll('.player-move')
 }
 
+function removeRow() {
+  const myTab = document.getElementById('myTable');
+  while (myTab.rows.length > 0) {
+    myTab.deleteRow(0);
+  }
+  for (let a in game.table) {
+    if (a = 'lp') {
+      game.table[a] = 0;
+    } else {
+      game.table(a) = '';
+    }
+  }
+  
+}
+function addRow() {
+  const myTab = document.getElementById('myTable');
+  const rowCnt = myTab.rows.length;      
+  let tr = myTab.insertRow(rowCnt);   
+  let k = 0;
+  for (let c in game.table) {
+    let td = document.createElement('td');       
+    td = tr.insertCell(k);
+    k++;
+    td.innerHTML = game.table[c];
+  }
+}
+
+
+
 const playerMove = function (__move) {
   //Change number to string - information about move
+  if (!(game.table['lp'] >= 0)) {game.table['lp'] = 0;}
+  game.table['lp'] = game.table['lp'] + 1;
+  
+  
   var moveInfo = function (__moveInfo) {
     switch (__moveInfo) {
       case 1: return 'Papier';
@@ -70,20 +104,32 @@ const playerMove = function (__move) {
   game.resultOneGame = moveResult(__move, game.moveComputer);
   game.resultOneGameInfo = moveResultInfo(game.resultOneGame);
 
+  game.table['human'] = game.humanMoveInfo;
+  game.table['computer'] = game.computerMoveInfo;
+
+  if (game.resultOneGame == 0) {
+    game.table['result'] = 'remis';
+  }
   if (game.resultOneGame == 1) {
+    game.table['result'] = 'Człowiek';
     documentObjects.human.querySelector('p').innerHTML = ++game.humanResult;
     if (game.humanResult == game.gameLimit) {
-      documentObjects.infoFinish.classList.add('info--finish');
-      documentObjects.infoFinish.innerHTML = 'Wygrałeś całą grę';
+      openModal('#gameResult');
+      documentObjects.infoFinish.querySelector('.game__header--desc').classList.add('info--finish');
+      documentObjects.infoFinish.querySelector('.game__header--result').innerText = 'Wygrałeś całą grę';
     }
   }
   if (game.resultOneGame == 2) {
+    game.table['result'] = 'Komputer';
     documentObjects.computer.querySelector('p').innerHTML = ++game.computerResult;
     if (game.computerResult == game.gameLimit) {
-      documentObjects.infoFinish.classList.add('info--red');
-      documentObjects.infoFinish.innerHTML = 'Przegrałeś całą grę';
+      openModal('#gameResult');
+      documentObjects.infoFinish.querySelector('.game__header--desc').classList.add('info--red');
+      documentObjects.infoFinish.querySelector('.game__header--result').innerText = 'Przegrałeś całą grę';
     }
   }
+  game.table['resultProgres'] = '' + game.humanResult + ':' + game.computerResult;
+  addRow();
 }
 
 //**********************************************************************************************************************
@@ -140,13 +186,12 @@ const buttonClickCallbackNewGame = function (event) {
     game.countScisorsNumber = 0;
     game.countStoneNumber = 0;
     game.countPaperNumber = 0;
-    documentObjects.infoFinish.classList.remove('info--red');
+    removeRow();
     documentObjects.human.querySelector('p').innerHTML = game.humanResult;
     documentObjects.computer.querySelector('p').innerHTML = game.computerResult;
     documentObjects.scisors.querySelector('p').innerHTML = '' + game.countScisorsNumber;
     documentObjects.stone.querySelector('p').innerHTML = '' + game.countStoneNumber;
     documentObjects.paper.querySelector('p').innerHTML = '' + game.countPaperNumber;
-    documentObjects.infoFinish.innerHTML = 'Gra w toku';
   }
   else buttonClickCallbackNewGame();
 }

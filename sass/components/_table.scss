@@ -1,0 +1,62 @@
+
+
+$heightHead: 60px;
+$heightBody: 50px;
+
+.table {
+    
+    overflow:auto;
+    max-width:1000px; 
+    width:100%;
+    margin:0 auto;
+    position:relative;
+    text-align: center;
+   
+
+    &__main {
+        display: block;
+        flex: 0 0 auto;
+        width: 90%;
+        
+    }
+
+    &__head {
+        color: lightslategray;
+    }
+
+    &__body {
+        color: gray;
+    }
+
+    &__ceil {
+        height: $heightBody;
+        vertical-align: middle;
+        border-top: 1px solid gray;
+
+        &--header {
+            font-weight: bold;
+            height: $heightHead;
+            vertical-align: middle;
+
+            &:hover {
+                background: yellow;
+                cursor: pointer; 
+          } 
+        }
+    }
+
+    
+
+    &__row {
+        &--single {
+            &:hover {
+                background: yellow;
+                cursor: pointer; 
+            } 
+        }
+    }
+} 
+
+
+
+

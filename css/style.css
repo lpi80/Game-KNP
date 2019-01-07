@@ -1,15 +1,239 @@
-body { padding: 10px; text-align: center; }
+* {
+  box-sizing: border-box;
+}
 
-.box { display: inline-block; margin: 50px 10px; width: 200px; border: 1px solid black; min-height: 100px; text-align: center; vertical-align: top; }
+.overlay {
+  position: fixed;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  min-height: 100%;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+  overflow-x: auto;
+  padding: 30px;
+  display: none;
+}
 
-.box__button { display: block; width: 100%; height: 50px; background: lightgray; }
+.overlay.show {
+  display: -ms-flexbox;
+  display: flex;
+}
 
-.box__button:hover { font-weight: bold; background: lightgreen; }
+.overlay::webkit-scrollbar {
+  display: none;
+}
 
-.box__header { border-bottom: 1px solid black; height: 50px; line-height: 50px; background: lightgray; }
+.modal {
+  max-width: 500px;
+  min-width: 500px;
+  max-height: 700px;
+  margin: auto;
+  background-color: #ffffff;
+  position: relative;
+  padding: 30px;
+  display: none;
+  overflow-y: auto;
+  overflow-x: none;
+}
 
-.info { font-size: 36px; font-weight: bold; margin: 30px 0px; }
+.modal.show {
+  display: -ms-flexbox;
+  display: flex;
+  display: flex;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
+  -ms-flex-align: start;
+      align-items: flex-start;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  min-height: 100px;
+  z-index: 0;
+}
 
-.info--playing { color: green; }
+.game {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  min-height: 100px;
+  z-index: 0;
+  width: 100%;
+}
 
-.info--finish { color: red; }
+.game__header--desc {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.game__header--result {
+  font-size: 40px;
+}
+
+.btn {
+  height: 40px;
+  min-width: 93px;
+  border-radius: 3px;
+  border: none;
+  color: #fff;
+  padding: 5px 10px;
+  margin: 5px 5px;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  display: block;
+}
+
+.btn--icon {
+  padding-right: 10px;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn--orange {
+  background: #f58220;
+}
+
+.btn--orange:hover {
+  background: #ffa200;
+}
+
+.btn--grey {
+  background: #979797;
+}
+
+.btn--grey:hover {
+  background: #bababa;
+}
+
+.btn--disabled {
+  background: #e3e3e3;
+}
+
+.btn--disabled:hover {
+  cursor: pointer;
+  background: #e3e3e3;
+}
+
+.table {
+  overflow: auto;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+}
+
+.table__main {
+  display: block;
+  -ms-flex: 0 0 auto;
+      flex: 0 0 auto;
+  width: 90%;
+}
+
+.table__head {
+  color: lightslategray;
+}
+
+.table__body {
+  color: gray;
+}
+
+.table__ceil {
+  height: 50px;
+  vertical-align: middle;
+  border-top: 1px solid gray;
+}
+
+.table__ceil--header {
+  font-weight: bold;
+  height: 60px;
+  vertical-align: middle;
+}
+
+.table__ceil--header:hover {
+  background: yellow;
+  cursor: pointer;
+}
+
+.table__row--single:hover {
+  background: yellow;
+  cursor: pointer;
+}
+
+body {
+  padding: 10px;
+  text-align: center;
+}
+
+.box {
+  display: inline-block;
+  margin: 50px 10px;
+  width: 200px;
+  border: 1px solid black;
+  min-height: 100px;
+  text-align: center;
+  vertical-align: top;
+}
+
+.box__button {
+  display: block;
+  width: 100%;
+  height: 50px;
+  background: lightgray;
+}
+
+.box__button:hover {
+  font-weight: bold;
+  background: lightgreen;
+}
+
+.box__header {
+  border-bottom: 1px solid black;
+  height: 50px;
+  line-height: 50px;
+  background: lightgray;
+}
+
+.info {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 30px 0px;
+}
+
+.info--playing {
+  color: green;
+}
+
+.info--finish {
+  color: red;
+}
+/*# sourceMappingURL=style.css.map */
