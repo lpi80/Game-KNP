@@ -1,5 +1,5 @@
 'use strict';
-var game = {
+let game = {
   countPaperNumber: 0,
   countScisorsNumber: 0,
   countStoneNumber: 0,
@@ -13,10 +13,11 @@ var game = {
   computerResult: 0,
   humanResult: 0,
   numberOfChoice: 2,
+  gameHumanName: 'Człowiek',
   table: []
 }
 
-var documentObjects = {
+const documentObjects = {
   info: document.querySelector('#result'),
   infoFinish: document.querySelector('#gameResult'),
   computer: document.querySelector('#box-computer'),
@@ -25,7 +26,8 @@ var documentObjects = {
   stone: document.querySelector('#box-stone'),
   scisors: document.querySelector('#box-scisors'),
   paper: document.querySelector('#box-paper'),
-  move: document.querySelectorAll('.player-move')
+  move: document.querySelectorAll('.player-move'),
+  newGameConfirmation: document.querySelector('#loginForm button')
 }
 
 function removeRow() {
@@ -33,29 +35,27 @@ function removeRow() {
   while (myTab.rows.length > 0) {
     myTab.deleteRow(0);
   }
-  for (let a in game.table) {
-    if (a = 'lp') {
-      game.table[a] = 0;
+  for (let key in game.table) {
+    if (key = 'lp') {
+      game.table[key] = 0;
     } else {
-      game.table(a) = '';
+      game.table(key) = '';
     }
   }
-  
 }
+
 function addRow() {
   const myTab = document.getElementById('myTable');
   const rowCnt = myTab.rows.length;      
   let tr = myTab.insertRow(rowCnt);   
-  let k = 0;
-  for (let c in game.table) {
+  let j = 0;
+  for (let i in game.table) {
     let td = document.createElement('td');       
-    td = tr.insertCell(k);
-    k++;
-    td.innerHTML = game.table[c];
+    td = tr.insertCell(j);
+    j++;
+    td.innerHTML = game.table[i];
   }
 }
-
-
 
 const playerMove = function (__move) {
   //Change number to string - information about move
@@ -63,7 +63,7 @@ const playerMove = function (__move) {
   game.table['lp'] = game.table['lp'] + 1;
   
   
-  var moveInfo = function (__moveInfo) {
+  const moveInfo = function (__moveInfo) {
     switch (__moveInfo) {
       case 1: return 'Papier';
       case 2: return 'Kamień';
@@ -107,26 +107,30 @@ const playerMove = function (__move) {
   game.table['human'] = game.humanMoveInfo;
   game.table['computer'] = game.computerMoveInfo;
 
-  if (game.resultOneGame == 0) {
-    game.table['result'] = 'remis';
-  }
-  if (game.resultOneGame == 1) {
-    game.table['result'] = 'Człowiek';
-    documentObjects.human.querySelector('p').innerHTML = ++game.humanResult;
-    if (game.humanResult == game.gameLimit) {
-      openModal('#gameResult');
-      documentObjects.infoFinish.querySelector('.game__header--desc').classList.add('info--finish');
-      documentObjects.infoFinish.querySelector('.game__header--result').innerText = 'Wygrałeś całą grę';
-    }
-  }
-  if (game.resultOneGame == 2) {
-    game.table['result'] = 'Komputer';
-    documentObjects.computer.querySelector('p').innerHTML = ++game.computerResult;
-    if (game.computerResult == game.gameLimit) {
-      openModal('#gameResult');
-      documentObjects.infoFinish.querySelector('.game__header--desc').classList.add('info--red');
-      documentObjects.infoFinish.querySelector('.game__header--result').innerText = 'Przegrałeś całą grę';
-    }
+  switch (game.resultOneGame) {
+    case 0:
+      game.table['result'] = 'remis';
+      break;
+
+    case 1:
+      game.table['result'] = game.gameHumanName;
+      documentObjects.human.querySelector('p').innerHTML = ++game.humanResult;
+      if (game.humanResult == game.gameLimit) {
+        openModal('#gameResult');
+        documentObjects.infoFinish.querySelector('.game__header--desc').classList.add('info--finish');
+        documentObjects.infoFinish.querySelector('.game__header--result').innerText = 'Wygrałeś całą grę';
+      }
+      break;
+
+    case 2:
+      game.table['result'] = 'Komputer';
+      documentObjects.computer.querySelector('p').innerHTML = ++game.computerResult;
+      if (game.computerResult == game.gameLimit) {
+        openModal('#gameResult');
+        documentObjects.infoFinish.querySelector('.game__header--desc').classList.add('info--red');
+        documentObjects.infoFinish.querySelector('.game__header--result').innerText = 'Przegrałeś całą grę';
+      }
+      break
   }
   game.table['resultProgres'] = '' + game.humanResult + ':' + game.computerResult;
   addRow();
@@ -135,7 +139,7 @@ const playerMove = function (__move) {
 //**********************************************************************************************************************
 
 const gameDesc = function () {
-  return game.resultOneGameInfo + '!<br>Człowiek: ' + game.humanMoveInfo + '<br>Komputer: ' + game.computerMoveInfo;
+  return game.resultOneGameInfo + '!<br>' + game.gameHumanName + ': ' + game.humanMoveInfo + '<br>Komputer: ' + game.computerMoveInfo;
 }
 
 const checkResult = function () {
@@ -174,11 +178,25 @@ documentObjects.move.forEach(function (kind) {
 
 const buttonClickCallbackNewGame = function (event) {
   //check number
-  const check = function (input) {
-    return (isNaN(input) || (input === null) || (input === '') || (input < 1)) ? 0 : 1;
-  }
+  
+  document.querySelector('#gameNumber').valueAsNumber = '';
+  document.querySelector('#gameName').value = '';
+  
+  openModal('#modalLogin');
+}
 
-  game.gameLimit = window.prompt('Do ilu wygranych gramy?');
+const check = function (input) {
+  return (isNaN(input) || (input === null) || (input === '') || (input < 1)) ? 0 : 1;
+}
+
+documentObjects.newGame.addEventListener('click', buttonClickCallbackNewGame);
+
+documentObjects.newGameConfirmation.addEventListener('click', function(event) {
+  game.gameLimit = document.querySelector('#gameNumber').valueAsNumber;
+  game.gameHumanName = document.querySelector('#gameName').value;
+  document.querySelector('#gameResult .game__header--desc').innerText = game.gameHumanName;
+  document.querySelector('#box-human .box__header').innerText = game.gameHumanName;
+  document.querySelector('#humanMoveDesc').innerText = 'Ruch ' + game.gameHumanName;
   if (check(game.gameLimit) == 1) {
     documentObjects.newGame.querySelector('p').innerHTML = game.gameLimit;
     game.computerResult = 0;
@@ -193,8 +211,4 @@ const buttonClickCallbackNewGame = function (event) {
     documentObjects.stone.querySelector('p').innerHTML = '' + game.countStoneNumber;
     documentObjects.paper.querySelector('p').innerHTML = '' + game.countPaperNumber;
   }
-  else buttonClickCallbackNewGame();
-}
-
-
-documentObjects.newGame.addEventListener('click', buttonClickCallbackNewGame);
+});

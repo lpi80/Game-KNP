@@ -44,9 +44,31 @@
 
 	<div class="overlay" id="overlay">
 
+		<div class="modal" id="modalLogin">
+            <div class='game__header game'>
+                <p class="game__header--desc">Nowa gra</p>
+            </div>
+            <div class="modal__login required" id="loginForm">
+                <label class="personal__input--login" for="gameName">
+                    <input class="personal__input" type="text" name="gameName" id="gameName" required pattern="[A-Za-z0-9' -_]+"
+                        placeholder="">
+                    <span class="personal__error"></span>
+                    <span class="personal__info"></span>
+                </label>
+                <label class="personal__input--login" for="gameNumber">
+                    <input class="personal__input" type="number" name="gameNumber" id="gameNumber" required pattern="[0-9]+">
+                    <span class="personal__error"></span>
+                    <span class="personal__info"></span>
+                </label>
+                <div class="game__header game">
+                    <button class="btn btn--orange js--close-modal"	>ENTER</button>
+                </div>
+            </div>
+        </div>
+
         <div class="modal" id="gameResult">
 			<div class='game__header game'>
-                <p class="game__header--desc">Człowieku!</p>
+                <p class="game__header--desc"></p>
 				<p class="game__header--result"></p>
 			</div>
 			<div class="game">
@@ -62,7 +84,7 @@
 									</span>
 								</th>
 								<th class="table__ceil--header">
-									<span class="table__ceil--name">
+									<span class="table__ceil--name" id="humanMoveDesc">
 										Ruch gracza
 									</span>
 								</th>

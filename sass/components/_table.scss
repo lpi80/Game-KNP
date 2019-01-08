@@ -37,23 +37,7 @@ $heightBody: 50px;
             font-weight: bold;
             height: $heightHead;
             vertical-align: middle;
-
-            &:hover {
-                background: yellow;
-                cursor: pointer; 
           } 
-        }
-    }
-
-    
-
-    &__row {
-        &--single {
-            &:hover {
-                background: yellow;
-                cursor: pointer; 
-            } 
-        }
     }
 } 
 

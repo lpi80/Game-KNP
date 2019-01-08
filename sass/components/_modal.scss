@@ -38,6 +38,13 @@
         @include myFlexRow(flex-start, flex-start, flex-start, row, 100px);
     
     }
+
+    &__login {
+        padding: 20px 10px;
+        @include myFlexRow(space-between, center, center, row, 100px);
+        width: 100%;
+    }
+    
 }
 
 .game {
@@ -47,6 +54,7 @@
         &--desc {
             font-size: 40px;
             font-weight: bold;
+            width: 100%;
 
             
         }

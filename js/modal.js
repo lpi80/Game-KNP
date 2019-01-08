@@ -10,12 +10,13 @@ document.querySelectorAll('#overlay .js--close-modal').forEach(function(btn) {
     })
 })
 
+/*
 document.querySelector('#overlay').addEventListener('click', function(e) {
     if(e.target === this) {
       closeModal()
     }
   })
-
+*/
   document.addEventListener('keyup', function(e) {
     if(e.keyCode === 27) {
       closeModal()
@@ -30,10 +31,6 @@ document.querySelector('#overlay').addEventListener('click', function(e) {
     document.querySelector(modal).classList.add('show')
   }
 
-
-//document.getElementById('btnExit').addEventListener('click', function(e) {
-//  openModal('#modalQuit',e);
-//},false)
 
 
 

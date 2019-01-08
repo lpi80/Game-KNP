@@ -1,0 +1,115 @@
+$inputHeight: 50px;
+
+
+
+
+.personal {
+   
+    &__row {
+        @include myFlexRow(space-between, center, center, row, $inputHeight, 5);
+        flex: 0 0 auto;
+        width: 100%;
+        padding: 10px 0;
+        position: relative;
+    }
+
+    &__column {
+         margin: 0 auto;
+         color: lightslategray;
+         border-bottom: 1px solid gray;
+         padding: 20px 0;
+     }
+
+    
+    &__input {
+        position: relative;
+        outline: none;
+        padding: 5px 30px;
+        border: 1 solid gray;
+        border-radius: 5px;
+        color: gray;
+        width: 95%;
+        height: 50px;
+    
+        &--icon {
+            position: absolute;
+            left: 10px;
+            top: 15px;
+        }
+        &--login {
+            position: relative;
+            @include myFlexRow(flex-start, flex-start, flex-start, column, 90px, 5);
+            width: 100%;
+        }
+ 
+        &--selects {
+            width: 100%;
+            height: 40px;
+            margin-top: 10px;
+            &::-ms-expand {
+                display: none;
+            }
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            
+            &-icon {
+                z-index: 999;
+                position: absolute;
+                left: calc(100% - 10% - 20px);
+                top: 55px;    
+                pointer-events: none;
+            }
+        }
+     
+        &:focus,
+        &:active,
+        &:hover {
+             border: 2px solid gray;
+        }
+    }
+
+    &__button {
+        @include myFlexRow(center, center, flex-start, row, 50px, 5);
+        padding: 20px 0;
+        width: 100%;
+    }
+    
+    &__error {
+        padding-top: 5px;
+        color: red;
+        width: 100%;
+    }
+
+    &__info {
+        padding-top: 5px;
+        width: 100%;
+    }
+
+   
+    & .required {
+        position: relative;
+        &::before {
+            content:'*';
+            color: red;
+            background: transparent;
+            position: absolute;
+            left: -10px;
+        }
+    }
+    
+}
+
+.text__error {
+    border-color: red;
+    background: pink;
+}
+
+.text__valid {
+    background: lightgreen;
+    border-color: darkgreen;
+}
+
+.text__info {
+    background: transparent;
+}
+
