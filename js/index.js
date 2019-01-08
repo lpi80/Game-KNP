@@ -74,10 +74,11 @@ const playerMove = function (__move) {
 
   //Count move result
   const moveResult = function (__moveHuman, __moveComputer) {
+    const scisorsHumanDefeatPaperComp = __moveHuman - __moveComputer == game.numberOfChoice;
     if (__moveHuman === __moveComputer) {
       return 0; //Draw 
     }
-    else if ((__moveComputer - __moveHuman == 1) || (__moveHuman - __moveComputer == game.numberOfChoice)) {
+    else if ((__moveComputer - __moveHuman == 1) || (scisorsHumanDefeatPaperComp)) {  //look name in moveInfo - order is the key
       return 1; //Human won  
     }
     else return 2; //Computer won
